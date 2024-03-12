@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dado D20 com Perícias para RPG</title>
+    <link rel="stylesheet" href="d20.css">
+    <style>
+        /* Geral */
+        body {
+            background-color: #121212;
+            color: #E0E0E0;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #dadoContainer {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #242424;
+        }
+
+        /* Botões */
+        button {
+            background-color: #3700B3;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #6200EE;
+        }
+
+        /* Seletor de Perícia */
+        #selecaoPericia {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #333333;
+            color: #FFFFFF;
+            border-radius: 5px;
+            border: 1px solid #555;
+        }
+
+        /* Campos de Entrada */
+        input[type="number"] {
+            width: 175px;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #333333;
+            color: #FFFFFF;
+            border-radius: 5px;
+            border: 1px solid #555;
+            font-size: 16px;
+        }
+
+        input[type="number"]::placeholder {
+            color: #BBBBBB;
+        }
+
+        /* Resultado */
+        #resultado {
+            font-size: 24px;
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #1C1C1C;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="dadoContainer">
+        
+        <button id="rolarD20Pericia">Rolar D20/com Perícia</button>
+
+        <select id="selecaoPericia">
+            <option value="">Selecione a Perícia</option>
+            <option value="Acrobacias">Acrobacias</option>
+            <option value="Intuição">Intuição</option>
+            <option value="Sobrevivência">Sobrevivência</option>
+            <option value="Carisma">Carisma</option>
+            <option value="Aprendizado">Aprendizado</option>
+            <option value="Arcanismo">Arcanismo</option>
+            <option value="Intimidação">Intimidação</option>
+            <option value="Natureza">Natureza</option>
+            <option value="Inteligência">Inteligência</option>
+            <option value="Religião">Religião</option>
+            <option value="Percepção">Percepção</option>
+            <option value="Persuasão">Persuasão</option>
+            <option value="Furtividade">Furtividade</option>
+            <option value="Iniciativa">Iniciativa</option>
+            <option value="Adestrar">Adestrar</option>
+            <!-- Adicione mais opções de perícias conforme necessário -->
+        </select>
+
+
+        <input type="number" id="forca" placeholder="Forca 1">
+        <input type="number" id="defesa" placeholder="Defesa 2">
+        <input type="number" id="constituicao" placeholder="Constituicao 3">
+        <input type="number" id="sorte" placeholder="Sorte 4">
+        <input type="number" id="velocidade" placeholder="Velocidade 5">
+        <input type="number" id="destreza" placeholder="Destreza 6">
+        <input type="number" id="conhecimento" placeholder="Conhecimento 7">
+        <input type="number" id="vontade" placeholder="Vontade 8">
+        <input type="number" id="fortitude" placeholder="Fortitude 9">
+
+        <div id="resultado">-</div>
+    </div>
+
+    <script>
+        document.getElementById("rolarD20Pericia").addEventListener("click", function () {
+            var periciaSelecionada = document.getElementById("selecaoPericia").value;
+            var forca = parseInt(document.getElementById("forca").value) || 0;
+            var defesa = parseInt(document.getElementById("defesa").value) || 0;
+            var constituicao = parseInt(document.getElementById("constituicao").value) || 0;
+            var sorte = parseInt(document.getElementById("sorte").value) || 0;
+            var velocidade = parseInt(document.getElementById("velocidade").value) || 0;
+            var destreza = parseInt(document.getElementById("destreza").value) || 0;
+            var conhecimento = parseInt(document.getElementById("conhecimento").value) || 0;
+            var vontade = parseInt(document.getElementById("vontade").value) || 0;
+            var fortitude = parseInt(document.getElementById("fortitude").value) || 0;
+
+            var bonus = 0; // Inicializa o bônus com zero
+
+            // Calcula o bônus com base na perícia selecionada
+            switch (periciaSelecionada) {
+                case "Intuição":
+                    bonus = (sorte + vontade) / 15;
+                    break;
+                case "Sobrevivência":
+                    bonus = (constituicao + sorte) / 12;
+                    break;
+                case "Carisma":
+                    bonus = (conhecimento + sorte) / 10;
+                    break;
+                case "Aprendizado":
+                    bonus = (conhecimento + fortitude) / 12;
+                    break;
+                case "Arcanismo":
+                    bonus = (conhecimento + fortitude) / 15;
+                    break;
+                case "Intimidação":
+                    bonus = (forca + vontade) / 18;
+                    break;
+                case "Natureza":
+                    bonus = (conhecimento + sorte) / 15;
+                    break;
+                case "Acrobacias":
+                    bonus = (destreza + velocidade) / 12;
+                    break;
+                case "Inteligência":
+                    bonus = (conhecimento + vontade) / 18;
+                    break;
+                case "Religião":
+                    bonus = (conhecimento + vontade) / 18;
+                    break;
+                case "Percepção":
+                    bonus = ((sorte + vontade) / 15 + vontade) / 12; // Intuição + vontade / 12
+                    break;
+                case "Persuasão":
+                    bonus = ((conhecimento + sorte) / 10 + sorte) / 15; // Carisma + sorte / 15
+                    break;
+                case "Furtividade":
+                    bonus = ((destreza + velocidade) / 12 + velocidade + destreza) / 12;
+                    break;
+                case "Iniciativa":
+                    bonus = (sorte + velocidade) / 14;
+                    break;
+                case "Adestrar":
+                    bonus = (destreza + (conhecimento + fortitude) / 12) / 8; // Destreza + Aprendizado / 8
+                    break;
+            }
+
+            // Rola o D20 e adiciona o bônus calculado
+            var resultadoD20 = Math.floor(Math.random() * 20) + 1;
+            var resultadoFinal = resultadoD20 + bonus;
+            // Arredonda o resultado final para o número inteiro mais próximo
+            var resultadoFinalArredondado = Math.round(resultadoFinal);
+
+            document.getElementById("resultado").innerText = "D20: " + resultadoD20 + " + Bônus: " + Math.round(bonus) + " = Total: " + resultadoFinalArredondado;
+
+            // Usando console.log para registrar o resultado arredondado
+            console.log("D20: " + resultadoD20 + " + Bônus: " + Math.round(bonus) + " = Total: " + resultadoFinalArredondado);
+        });
+
+    </script>
+</body>
+
+</html>

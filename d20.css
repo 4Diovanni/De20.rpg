@@ -1,0 +1,71 @@
+/* Geral */
+body {
+    background-color: #121212;
+    color: #E0E0E0;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  #dadoContainer {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #242424;
+  }
+  
+  /* Botões */
+  button {
+    background-color: #3700B3;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #6200EE;
+  }
+  
+  /* Seletor de Perícia */
+  #selecaoPericia {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #333333;
+    color: #FFFFFF;
+    border-radius: 5px;
+    border: 1px solid #555;
+  }
+  
+  /* Campos de Entrada */
+  input[type="number"] {
+    width: 175px;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #333333;
+    color: #FFFFFF;
+    border-radius: 5px;
+    border: 1px solid #555;
+    font-size: 16px;
+  }
+  
+  input[type="number"]::placeholder {
+    color: #BBBBBB;
+  }
+  
+  /* Resultado */
+  #resultado {
+    font-size: 24px;
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #1C1C1C;
+    border-radius: 10px;
+  }
+  
